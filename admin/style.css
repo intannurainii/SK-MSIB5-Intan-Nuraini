@@ -1,0 +1,66 @@
+.stepper {
+    .line {
+      width: 2px;
+      background-color: rgb(32, 30, 141) !important;
+    }
+  
+    .lead {
+      font-size: 1.1rem;
+    }
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    /* Lebar panah */
+    height: 20px;
+    /* Tinggi panah */
+    background-color: #4CAF50;
+    /* Warna panah */
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    /* Bentuk panah */
+  }
+  
+  .btn {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 30px;
+  
+  }
+  
+  .rounded {
+    padding: 20px;
+    width: 100%;
+    height: 20%;
+    justify-content: center;
+  }
+  
+  .box-container {
+    position: relative;
+  }
+  
+  .box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #f30a0a;
+    padding: 1px 10px;
+    border: 1px solid #f30a0a;
+    border-radius: 300px;
+    top: -15px;
+    /* Sesuaikan posisi vertikal sesuai kebutuhan */
+    left: 32%;
+    /* Letak horizontal di tengah */
+    transform: translateX(-50%);
+    /* Pusatkan horizontalnya */
+  }
+  
+  .col {
+    width: 1500px;
+    padding: 0;
+    margin: 0;
+  }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2023 at 08:38 AM
+-- Generation Time: Nov 19, 2023 at 07:48 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,6 +34,18 @@ CREATE TABLE `customer` (
   `telepon` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `nama`, `alamat`, `telepon`) VALUES
+(39, 'Intan ', 'semarang', '082242536479'),
+(40, 'Gigi', 'Jakarta', '0897654532'),
+(41, 'Anggit', 'Ungaran', '0876542897'),
+(42, 'Dina', 'Bandung', '08132432987'),
+(43, 'Dita', 'Mojokerto', '086542987'),
+(44, 'Dewa', 'Pedurungan Kidul', '0812426537');
+
 -- --------------------------------------------------------
 
 --
@@ -45,8 +57,20 @@ CREATE TABLE `detail_pemesanan` (
   `pemesanan_id` int(11) DEFAULT NULL,
   `menu_id` int(11) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
-  `harga` decimal(10,2) DEFAULT NULL
+  `total` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `detail_pemesanan`
+--
+
+INSERT INTO `detail_pemesanan` (`detail_id`, `pemesanan_id`, `menu_id`, `jumlah`, `total`) VALUES
+(25, 25, 12023, 2, 0.00),
+(26, 26, 52023, 3, 0.00),
+(27, 27, 32023, 1, 0.00),
+(28, 28, 42023, 4, 0.00),
+(29, 29, 62023, 6, 0.00),
+(30, 30, 72023, 7, 0.00);
 
 -- --------------------------------------------------------
 
@@ -56,9 +80,25 @@ CREATE TABLE `detail_pemesanan` (
 
 CREATE TABLE `menu` (
   `menu_id` int(11) NOT NULL,
+  `gambar` text DEFAULT NULL,
   `nama_menu` varchar(200) NOT NULL,
   `harga` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`menu_id`, `gambar`, `nama_menu`, `harga`) VALUES
+(12023, 'gambar/sop-buntut.jpeg', 'Sup Buntut ', 35000),
+(22023, 'gambar/rujak-khas.jpeg', 'Rujak Khas Kurma', 22000),
+(32023, 'gambar/gurami-bakar.jpeg', 'Gurami Bakar Kecap', 30000),
+(42023, 'gambar/markisa-mint.jpeg', 'Markisa Mint Mojito', 25000),
+(52023, 'gambar/lemon-tea.jpg', 'Lemon Tea', 15000),
+(62023, 'gambar/tahu-petis.jpeg', 'Tahu Petis', 20000),
+(72023, 'gambar/bento-box.jpeg', 'Bento  Box', 45000),
+(92023, 'gambar/air-mineral.jpeg', 'Air Mineral', 10000),
+(102023, 'gambar/nasgor-ayamlengkuas.jpeg', 'Nasgor Ayam Lengkuas', 45000);
 
 -- --------------------------------------------------------
 
@@ -86,6 +126,18 @@ CREATE TABLE `pemesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `pemesanan`
+--
+
+INSERT INTO `pemesanan` (`pemesanan_id`, `customer_id`, `tanggal_pemesanan`) VALUES
+(25, 39, '2023-11-19'),
+(26, 40, '2023-11-19'),
+(27, 41, '2023-11-19'),
+(28, 42, '2023-11-19'),
+(29, 43, '2023-11-19'),
+(30, 44, '2023-11-19');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -102,7 +154,8 @@ ALTER TABLE `customer`
 ALTER TABLE `detail_pemesanan`
   ADD PRIMARY KEY (`detail_id`),
   ADD KEY `pemesanan_id` (`pemesanan_id`),
-  ADD KEY `idx_detail_pemesanan_menu` (`menu_id`);
+  ADD KEY `idx_detail_pemesanan_menu` (`menu_id`),
+  ADD KEY `menu_id` (`menu_id`);
 
 --
 -- Indexes for table `menu`
@@ -135,19 +188,13 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `detail_pemesanan`
 --
 ALTER TABLE `detail_pemesanan`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `menu`
---
-ALTER TABLE `menu`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -159,7 +206,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `pemesanan_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pemesanan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
